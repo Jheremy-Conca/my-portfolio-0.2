@@ -116,14 +116,12 @@ onMounted(() => {
   padding: 0 10px;
   flex-wrap: wrap;
 }
-.bottom-github{
-  width: clamp(400px, 50%, 680px);
-  height: clamp(250px, 25vw, 320px);
-}
+.bottom-github,
 .bottom-card {
-  width: clamp(250px, 50%, 320px);
+  width: clamp(250px, 30%, 440px);  /* mismo rango para todos */
   height: clamp(250px, 25vw, 320px);
 }
+
 
 /* ░░░░░ FILA 4 (SOCIAL) ░░░░░ */
 .container-social-row {

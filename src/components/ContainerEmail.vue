@@ -66,23 +66,5 @@ import { Icon } from '@iconify/vue';
   margin-top: 20px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .container-email {
-    width: 100%;
-    height: auto;
-    min-height: 260px;
-    padding: 20px;
-  }
 
-  .container-email svg:not(.email-icon) {
-    width: 60px;
-    height: 60px;
-  }
-
-  .email-icon {
-    width: 20px;
-    height: 20px;
-  }
-}
 </style>
