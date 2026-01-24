@@ -1,0 +1,12 @@
+/* Background global */
+body {
+  background-color: rgb(9 3 14);
+  color: white; /* opcional pero recomendado */
+}
+
+/* Estilos globales */
+* {
+  box-sizing: border-box;
+  font-family: Montserrat, sans-serif;
+  justify-content: center;
+}
