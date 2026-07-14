@@ -1,182 +1,176 @@
 <template>
-  <!-- ░░░░░ FILA 1: PRESENTACIÓN ░░░░░ -->
-  <div class="top-row-container">
-    <div class="top-row-wrapper">
-      <ContainerAbout
-        titulo="👋 Hola, soy Jheremy Conca"
-        descripcion="Tengo experiencia en <b>Vue.js</b>, <b>HTML</b>, <b>CSS</b>, <b>JavaScript</b>, <b>Node.js</b>, <b>Express</b>, <b>Spring Boot Java</b> y <b>MySQL</b>. Me encanta aprender cosas nuevas, experimentar con tecnologías modernas y siempre doy lo mejor de mí en mi trabajo."
-      />
+  <!-- ░░░░░ BENTO GRID ÚNICO (12 columnas) ░░░░░ -->
+  <div class="bento-grid">
 
-      <div class="side-cards">
-        <SwitchCard />
-      </div>
+    <!-- FILA 1: About (8) + Switch/IG apilados (4) -->
+    <AboutCard
+      class="card-about"
+      :titulo="t.greeting + ' Jheremy Conca'"
+      :descripcion="t.bio"
+    />
+    <div class="card-side">
+      <SwitchIgCard />
     </div>
-  </div>
 
-  <!-- ░░░░░ FILA 2: YEARS / LINKEDIN / PROJECTS ░░░░░ -->
-  <div class="container-years-wrapper">
-    <ContainerYears class="fixed-card" />
-    <ContainerIn class="fixed-card" />
-    <ContainerProjects class="projects-card" />
-  </div>
+    <!-- FILA 2: Years (3) + LinkedIn (3) + Projects (6) -->
+    <YearsCard class="card-years" />
+    <LinkedinCard class="card-in" />
+    <ProjectsCard class="card-projects" />
 
-  <!-- ░░░░░ FILA 3: GITHUB / STACK / EMAIL ░░░░░ -->
-  <div class="container-bottom-cards">
-    <ContainerGithub class="bottom-github" />
-    <TechIconsCard class="bottom-card" />
-    <ContainerEmail class="bottom-card" />
-  </div>
+    <!-- FILA 3: Github (4) + Stack (4) + Email (4) -->
+    <GithubCard class="card-github" />
+    <TechStackCard class="card-tech" />
+    <EmailCard class="card-email" />
 
-  <!-- ░░░░░ FILA 4: CLIMA / X / DISCORD ░░░░░ -->
-  <div class="container-social-row">
-    <WeatherCard class="weather-wide" />
-    <ContainerX class="social-card" />
-    <ContainerDiscord class="social-card" />
-  </div>
-<div class="container-social-row">
-  <ContainerSpotify class="weather-wide" />
-</div>
+    <!-- FILA 4: Weather (6) + X (3) + Discord (3) -->
+    <WeatherCard class="card-weather" />
+    <XCard class="card-x" />
+    <DiscordCard class="card-discord" />
 
+    <!-- FILA 5: Spotify (4) + Idioma (4) + CV (4) -->
+    <LanguageCard class="card-lang" />
+    <CvCard class="card-cv" />
+    <SpotifyCard class="card-spotify" />
+
+
+  </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 
-import ContainerAbout from '../components/ContainerAbout.vue'
-import ContainerYears from '../components/ContainerYears.vue'
-import ContainerIn from '../components/ContainerIn.vue'
-import ContainerProjects from '../components/ContainerProjects.vue'
-import SwitchCard from '../components/ContainerSwitchAndIG.vue'
-import ContainerGithub from '../components/ContainerGithub.vue'
-import TechIconsCard from '../components/ContainerTechIcons.vue'
-import ContainerEmail from '../components/ContainerEmail.vue'
-import WeatherCard from '../components/ContainerWeather.vue'
-import ContainerX from '../components/ContainerX.vue'
-import ContainerDiscord from '../components/ContainerDiscord.vue'
-import ContainerSpotify from '../components/ContainerSpotify.vue'
+import AboutCard from '../components/cards/AboutCard.vue'
+import SwitchIgCard from '../components/cards/SwitchIgCard.vue'
+import YearsCard from '../components/cards/YearsCard.vue'
+import LinkedinCard from '../components/cards/LinkedinCard.vue'
+import ProjectsCard from '../components/cards/ProjectsCard.vue'
+import GithubCard from '../components/cards/GithubCard.vue'
+import TechStackCard from '../components/cards/TechStackCard.vue'
+import EmailCard from '../components/cards/EmailCard.vue'
+import WeatherCard from '../components/cards/WeatherCard.vue'
+import XCard from '../components/cards/XCard.vue'
+import DiscordCard from '../components/cards/DiscordCard.vue'
+import SpotifyCard from '../components/cards/SpotifyCard.vue'
+import LanguageCard from '../components/cards/LanguageCard.vue'
+import CvCard from '../components/cards/CvCard.vue'
 
-const isDarkMode = ref(false)
+import { useLocale } from '../composables/useLocale'
+
+const { t } = useLocale()
 
 onMounted(() => {
-  document.body.style.background =
-    'linear-gradient(to bottom, #0a030f, #0a030f)'
+  document.body.style.background = 'linear-gradient(to bottom, #0a030f, #0a030f)'
 })
 </script>
 
 <style scoped>
-/* ░░░░░ FILA 1 ░░░░░ */
-.top-row-container {
-  display: flex;
-  justify-content: center;
+/* ============================================
+   BENTO GRID — base de 12 columnas compartida
+   ============================================ */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(220px, 320px);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 10px auto 40px;
   padding: 0 20px;
-  margin-top: 10px;
 }
 
-.top-row-wrapper {
-  display: flex;
-  gap: 15px;
-  align-items: flex-start;
-  flex-wrap: wrap; /* se adapta en pantallas pequeñas */
-  justify-content: center;
+.bento-grid > * {
+  min-width: 0;
 }
 
-.side-cards {
+/* ░░░░░ FILA 1 ░░░░░ */
+.card-about {
+  grid-column: span 8;
+}
+
+.card-side {
+  grid-column: span 4;
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 /* ░░░░░ FILA 2 ░░░░░ */
-.container-years-wrapper {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 15px;
-  flex-wrap: wrap;
-  padding: 0 10px;
+.card-years {
+  grid-column: span 3;
 }
-
-.fixed-card {
-  width: clamp(250px, 25%, 320px);
-  height: clamp(250px, 25vw, 320px);
+.card-in {
+  grid-column: span 3;
 }
-
-.projects-card {
-  width: clamp(400px, 50%, 680px);
-  height: clamp(250px, 25vw, 320px);
+.card-projects {
+  grid-column: span 6;
 }
 
 /* ░░░░░ FILA 3 ░░░░░ */
-.container-bottom-cards {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 20px;
-  margin-top: 20px;
-  padding: 0 10px;
-  flex-wrap: wrap;
-}
-.bottom-github,
-.bottom-card {
-  width: clamp(250px, 30%, 440px);  /* mismo rango para todos */
-  height: clamp(250px, 25vw, 320px);
+.card-github,
+.card-tech,
+.card-email {
+  grid-column: span 4;
 }
 
-
-/* ░░░░░ FILA 4 (SOCIAL) ░░░░░ */
-.container-social-row {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 20px;
-  margin: 20px 0;
-  padding: 0 10px;
-  flex-wrap: wrap;
+/* ░░░░░ FILA 4 ░░░░░ */
+.card-weather {
+  grid-column: span 6;
+}
+.card-x,
+.card-discord {
+  grid-column: span 3;
 }
 
-.weather-wide {
-  width: clamp(400px, 50%, 680px);
-  height: clamp(250px, 25vw, 320px);
-}
+/* ░░░░░ FILA 5 ░░░░░ */
 
-.social-card {
-  width: clamp(250px, 25%, 320px);
-  height: clamp(250px, 25vw, 320px);
+.card-lang,
+.card-cv {
+  grid-column: span 3;
+}
+.card-spotify{
+  grid-column: span 6;
+
 }
 
 /* =======================
-   RESPONSIVE FINO
+   RESPONSIVE
 ======================= */
-@media (max-width: 768px) {
-  .top-row-wrapper {
-    flex-direction: column;
-    align-items: center;
+@media (max-width: 992px) {
+  .bento-grid {
+    grid-template-columns: repeat(6, 1fr);
   }
 
-  .side-cards {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+  .card-about    { grid-column: span 6; }
+  .card-side     { grid-column: span 6; flex-direction: row; }
 
-  .container-years-wrapper,
-  .container-bottom-cards,
-  .container-social-row {
-    flex-direction: column;
-    align-items: center;
-  }
+  .card-years    { grid-column: span 3; }
+  .card-in       { grid-column: span 3; }
+  .card-projects { grid-column: span 6; }
 
-  .fixed-card,
-  .projects-card,
-  .bottom-card,
-  .weather-wide,
-  .social-card,
-   .spotify-card {
-    width: 90%;
-    height: auto;
-    min-height: 200px;  /* altura mínima para que no desaparezca */
+  .card-github,
+  .card-tech,
+  .card-email    { grid-column: span 2; }
 
-  }
+  .card-weather  { grid-column: span 6; }
+  .card-x,
+  .card-discord  { grid-column: span 3; }
+
+  .card-lang     { grid-column: span 3; }
+  .card-cv       { grid-column: span 3; }
+  .card-spotify  { grid-column: span 6; }
+
 }
 
+@media (max-width: 640px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(200px, auto);
+  }
+
+  .bento-grid > * {
+    grid-column: 1 / -1 !important;
+  }
+
+  .card-side {
+    flex-direction: row;
+  }
+}
 </style>

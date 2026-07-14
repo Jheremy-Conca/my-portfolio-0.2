@@ -1,68 +1,62 @@
 <template>
-  <div class="side-container">
-    <!-- Instagram Card -->
-    <div class="container-es instagram-card">
+  <div class="switch-ig-wrapper">
+    <BaseCard class="ig-card">
       <div class="top-right-icon">
         <a href="https://www.instagram.com/jheremyxv/" target="_blank" rel="noopener">
           <Icon icon="mdi:open-in-new" color="#cccccc" width="20" />
         </a>
       </div>
       <a href="https://www.instagram.com/jheremyxv/" target="_blank" rel="noopener">
-        <Icon icon="mdi:instagram" color="white" width="100" height="100" />
+        <Icon icon="mdi:instagram" color="white" width="80" height="80" />
       </a>
-    </div>
+    </BaseCard>
 
-    <!-- Switch Card -->
-    <div class="container-es switch-card">
+    <BaseCard class="switch-card">
       <label class="switch">
         <input type="checkbox" v-model="isDarkMode" @change="toggleBackground" />
         <span class="slider"></span>
       </label>
-    </div>
+    </BaseCard>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import { Icon } from '@iconify/vue'
+import BaseCard from '../ui/BaseCard.vue'
 
 const isDarkMode = ref(false)
 
 const toggleBackground = () => {
   document.body.style.background = isDarkMode.value
-    ? "linear-gradient(to bottom, #1d0b27, #1d0b27)"
-    : "linear-gradient(to bottom, #0a030f, #0a030f)"
+    ? 'linear-gradient(to bottom, #1d0b27, #1d0b27)'
+    : 'linear-gradient(to bottom, #0a030f, #0a030f)'
 }
 
 onMounted(() => {
-  document.body.style.background = "linear-gradient(to bottom, #0a030f, #0a030f)"
+  document.body.style.background = 'linear-gradient(to bottom, #0a030f, #0a030f)'
 })
 </script>
 
 <style scoped>
-.side-container {
+.switch-ig-wrapper {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
 
-/* Contenedor general de cards */
-.container-es {
+.ig-card,
+.switch-card {
+  flex: 1;
   position: relative;
-  width: 332px;
-  height: 332px;
-  background-color: rgba(117, 82, 161, 0.534);
-  border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  text-align: center;
   color: white;
 }
 
-/* Icono superior derecho */
 .top-right-icon {
   position: absolute;
   top: 10px;
@@ -70,7 +64,6 @@ onMounted(() => {
   z-index: 10;
 }
 
-/* Switch dentro de la card */
 .switch {
   position: relative;
   display: inline-block;
@@ -87,10 +80,7 @@ onMounted(() => {
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-color: #beaec9;
   transition: 0.4s;
   border-radius: 34px;
@@ -115,6 +105,4 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(26px);
 }
-
-
 </style>

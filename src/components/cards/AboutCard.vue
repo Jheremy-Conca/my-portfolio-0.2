@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <BaseCard class="about-card">
     <div class="text-container">
       <h2>{{ titulo }}</h2>
       <p v-html="descripcion"></p>
@@ -8,39 +8,26 @@
     <div class="image-container">
       <img :src="senkuImg" alt="Senku" />
     </div>
-  </div>
+  </BaseCard>
 </template>
 
+<script setup>
+import BaseCard from '../ui/BaseCard.vue'
+import senkuImg from '../../assets/images/senku.png'
 
-<script>
-import senkuImg from '../assets/senku.png'
-
-export default {
-  name: "CardAbout",
-  props: {
-    titulo: String,
-    descripcion: String
-  },
-  data() {
-    return { senkuImg }
-  }
-}
+defineProps({
+  titulo: String,
+  descripcion: String
+})
 </script>
 
 <style scoped>
-.card {
-  width: 100%;
-  max-width: 1028px;
-  border-radius: 25px;
-  background-color: rgba(117, 82, 161, 0.534);
-
+.about-card {
   display: flex;
   gap: 20px;
   padding: 30px;
-  box-sizing: border-box;
 }
 
-/* TEXTO */
 .text-container {
   flex: 1;
   font-size: clamp(16px, 2vw, 22px);
@@ -53,7 +40,6 @@ export default {
   margin-bottom: 10px;
 }
 
-/* IMAGEN */
 .image-container {
   flex: 1;
   display: flex;
@@ -67,16 +53,11 @@ export default {
   object-fit: contain;
 }
 
-/* =======================
-   RESPONSIVE
-======================= */
-
 @media (max-width: 768px) {
-  .card {
+  .about-card {
     flex-direction: column;
     text-align: center;
   }
-
   .image-container img {
     max-width: 80%;
   }

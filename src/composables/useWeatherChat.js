@@ -59,7 +59,7 @@ export function useWeatherChat() {
       stateImage.value = "/amanecer.png";
     } else if (hour < 12) {
       backgroundClass.value = "morning";
-      stateImage.value = "/mañana.png";
+      stateImage.value = "/manana.png";
     } else if (hour < 15) {
       backgroundClass.value = "noon";
       stateImage.value = "/mediodia.png";
