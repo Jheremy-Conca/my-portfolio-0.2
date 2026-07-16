@@ -14,7 +14,6 @@ export function useLastfm(pollIntervalMs = 15000) {
         return
       }
 
-      // 2. Manejar si responde 204 (No hay reproducciones recientes)
       if (res.status === 204) {
         console.log('No hay canciones reproducidas recientemente.')
         track.value = null
@@ -49,6 +48,7 @@ export function useLastfm(pollIntervalMs = 15000) {
     if (pollTimer) return // ya está corriendo, evita duplicar timers
     pollTimer = setInterval(fetchTrack, pollIntervalMs)
   }
+
 
   const stopPolling = () => {
     if (pollTimer) {

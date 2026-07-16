@@ -51,6 +51,8 @@
 import { ref, computed } from 'vue';
 import ProjectCard from '../components/cards/ProjectCard.vue';
 import gestionRolesImg from '../assets/projects/gestion-roles/usuarios.png';
+import gestionAcademicaImg from '../assets/projects/gestion-academica/dashboard.png';
+import clinicaAmbulatoriaImg from '../assets/projects/clinica-ambulatoria/menu-principal.png';
 
 const projects = ref([
   {
@@ -61,6 +63,27 @@ const projects = ref([
     repoUrl: 'https://github.com/Jheremy-Conca/gestion-roles',
     stack: ['Vue 3', 'Vite', 'Pinia', 'Node.js', 'Express', 'PostgreSQL', 'JWT'],
     accentColor: '#7c5cff',
+  },
+  {
+    title: 'Sistema de Gestión Académica',
+    description: 'Sistema Full Stack para la administración de alumnos, profesores, cursos, salones e inscripciones. Incluye autenticación JWT con filtros personalizados, formularios reactivos y exportación de datos a Excel.',
+    image: gestionAcademicaImg,
+    demoUrl: '',
+    repos: [
+      { label: 'Frontend', url: 'https://github.com/Jheremy-Conca/frontend-gestion-inscripciones' },
+      { label: 'Backend', url: 'https://github.com/Jheremy-Conca/backend-gestion-inscripciones' },
+    ],
+    stack: ['Angular', 'TypeScript', 'RxJS', 'Bootstrap 5', 'Spring Boot', 'Spring Security', 'MySQL'],
+    accentColor: '#2ecc71',
+  },
+  {
+    title: 'Sistema de Gestión Clínica Ambulatoria',
+    description: 'Aplicación de escritorio en Java (Swing) para la gestión integral de una clínica ambulatoria: registro de pacientes, médicos y consultorios, agendamiento de citas médicas, diagnósticos y generación de comprobantes de pago (boletas/facturas) en PDF. Arquitectura MVC con DAOs, persistencia en MySQL y aplicación de los cuatro pilares de la POO.',
+    image: clinicaAmbulatoriaImg,
+    demoUrl: '',
+    repoUrl: 'https://github.com/Jheremy-Conca/PROJECT-POO-CLINICA-INNOVACION',
+    stack: ['Java', 'Swing', 'MySQL', 'JDBC', 'OpenPDF', 'MVC'],
+    accentColor: '#2980b9',
   },
 ]);
 

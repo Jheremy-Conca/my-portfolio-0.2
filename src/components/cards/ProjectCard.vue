@@ -22,15 +22,18 @@
         >
           Ver demo
         </a>
+
+        <!-- Múltiples repos (frontend/backend, etc.) -->
         <a
-          v-if="repoUrl"
-          :href="repoUrl"
+          v-for="repo in normalizedRepos"
+          :key="repo.url"
+          :href="repo.url"
           target="_blank"
           rel="noopener noreferrer"
           class="project-card__btn project-card__btn--outline"
           @click.stop
         >
-          Código
+          {{ repo.label }}
         </a>
       </div>
     </div>
@@ -54,14 +57,26 @@
 </template>
 
 <script setup>
-defineProps({
+import { computed } from 'vue';
+
+const props = defineProps({
   title: { type: String, required: true },
   description: { type: String, default: '' },
   image: { type: String, default: '' },
   demoUrl: { type: String, default: '' },
+  // Compatibilidad con proyectos de un solo repo
   repoUrl: { type: String, default: '' },
+  // Nuevo: soporte para múltiples repos, ej:
+  // repos: [{ label: 'Frontend', url: '...' }, { label: 'Backend', url: '...' }]
+  repos: { type: Array, default: () => [] },
   stack: { type: Array, default: () => [] },
   accentColor: { type: String, default: '#7c5cff' },
+});
+
+const normalizedRepos = computed(() => {
+  if (props.repos.length > 0) return props.repos;
+  if (props.repoUrl) return [{ label: 'Código', url: props.repoUrl }];
+  return [];
 });
 </script>
 
@@ -120,7 +135,9 @@ defineProps({
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 0.6rem;
+  padding: 0.6rem;
   background: rgba(10, 8, 14, 0.55);
   opacity: 0;
   transition: opacity 0.25s ease;
@@ -172,12 +189,27 @@ defineProps({
   font-size: 0.85rem;
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.65);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  max-height: calc(1.4em * 4); /* ~4 líneas visibles antes de hacer scroll */
+  overflow-y: auto;
+  padding-right: 8px;
 }
 
+.project-card__desc::-webkit-scrollbar {
+  width: 4px;
+}
+
+.project-card__desc::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.project-card__desc::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+}
+
+.project-card__desc::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
 .project-card__stack {
   display: flex;
   flex-wrap: wrap;
