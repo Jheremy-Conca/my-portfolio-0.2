@@ -53,6 +53,7 @@ import ProjectCard from '../components/cards/ProjectCard.vue';
 import gestionRolesImg from '../assets/projects/gestion-roles/usuarios.png';
 import gestionAcademicaImg from '../assets/projects/gestion-academica/dashboard.png';
 import clinicaAmbulatoriaImg from '../assets/projects/clinica-ambulatoria/menu-principal.png';
+import salesDashboardImg from '../assets/projects/sales-live-dashboard/dashboard.png';
 
 const projects = ref([
   {
@@ -84,6 +85,15 @@ const projects = ref([
     repoUrl: 'https://github.com/Jheremy-Conca/PROJECT-POO-CLINICA-INNOVACION',
     stack: ['Java', 'Swing', 'MySQL', 'JDBC', 'OpenPDF', 'MVC'],
     accentColor: '#2980b9',
+  },
+  {
+    title: 'Sales Live Dashboard',
+    description: 'Dashboard de ventas en tiempo real. El backend genera ventas simuladas cada 3 segundos, las persiste en PostgreSQL (Neon) vía Prisma, y las transmite en vivo al frontend por Socket.IO.',
+    image: salesDashboardImg,
+    demoUrl: 'https://sales-livedashboard.netlify.app',
+    repoUrl: 'https://github.com/Jheremy-Conca/sales-live-dashboard',
+    stack: ['Vue 3', 'Pinia', 'Chart.js', 'Node.js', 'Express', 'Socket.IO', 'PostgreSQL', 'Prisma'],
+    accentColor: '#f39c12',
   },
 ]);
 
