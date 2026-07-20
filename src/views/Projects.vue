@@ -54,6 +54,7 @@ import gestionRolesImg from '../assets/projects/gestion-roles/usuarios.png';
 import gestionAcademicaImg from '../assets/projects/gestion-academica/dashboard.png';
 import clinicaAmbulatoriaImg from '../assets/projects/clinica-ambulatoria/menu-principal.png';
 import salesDashboardImg from '../assets/projects/sales-live-dashboard/dashboard.png';
+import cercayaImg from '../assets/projects/cercaya/mapa.png';
 
 const projects = ref([
   {
@@ -94,6 +95,15 @@ const projects = ref([
     repoUrl: 'https://github.com/Jheremy-Conca/sales-live-dashboard',
     stack: ['Vue 3', 'Pinia', 'Chart.js', 'Node.js', 'Express', 'Socket.IO', 'PostgreSQL', 'Prisma'],
     accentColor: '#f39c12',
+  },
+  {
+    title: 'Cercaya',
+    description: 'Plataforma de lugares y reseñas con búsqueda geoespacial: permite registrar lugares, calificarlos con reseñas y fotos, y encontrar los más cercanos según tu ubicación usando PostGIS. Incluye autenticación JWT, subida de imágenes a Cloudinary y mapa interactivo con Leaflet.',
+    image: cercayaImg,
+    demoUrl: 'https://cercaya.netlify.app',
+    repoUrl: 'https://github.com/Jheremy-Conca/cercaya',
+    stack: ['Vue 3', 'Vite', 'Pinia', 'Leaflet', 'Node.js', 'Express', 'Sequelize', 'PostgreSQL', 'PostGIS', 'JWT', 'Cloudinary'],
+    accentColor: '#e74c3c',
   },
 ]);
 
