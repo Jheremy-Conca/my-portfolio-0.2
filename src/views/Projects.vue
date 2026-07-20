@@ -19,13 +19,20 @@
         Todos
       </button>
       <button
-        v-for="tech in allTechs"
+        v-for="tech in visibleTechs"
         :key="tech"
         class="filter-chip"
         :class="{ 'filter-chip--active': activeFilter === tech }"
         @click="activeFilter = tech"
       >
         {{ tech }}
+      </button>
+      <button
+        v-if="allTechs.length > TECHS_LIMIT"
+        class="filter-chip filter-chip--toggle"
+        @click="showAllTechs = !showAllTechs"
+      >
+        {{ showAllTechs ? 'Ver menos' : `+${allTechs.length - TECHS_LIMIT} más` }}
       </button>
     </div>
 
@@ -109,11 +116,20 @@ const projects = ref([
 
 const activeFilter = ref('all');
 
+// Cuántos chips de tecnología se muestran antes de colapsar el resto
+// detrás del botón "+N más".
+const TECHS_LIMIT = 8;
+const showAllTechs = ref(false);
+
 const allTechs = computed(() => {
   const set = new Set();
   projects.value.forEach((p) => p.stack.forEach((t) => set.add(t)));
   return Array.from(set);
 });
+
+const visibleTechs = computed(() =>
+  showAllTechs.value ? allTechs.value : allTechs.value.slice(0, TECHS_LIMIT)
+);
 
 const filteredProjects = computed(() => {
   if (activeFilter.value === 'all') return projects.value;
@@ -188,6 +204,12 @@ const filteredProjects = computed(() => {
   background: #7c5cff;
   border-color: #7c5cff;
   color: #0a080e;
+}
+
+.filter-chip--toggle {
+  background: transparent;
+  border-style: dashed;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .projects-view__grid {
