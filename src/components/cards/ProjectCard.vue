@@ -33,6 +33,7 @@
           class="project-card__btn project-card__btn--outline"
           @click.stop
         >
+          <Icon icon="simple-icons:github" class="project-card__btn-icon" />
           {{ repo.label }}
         </a>
       </div>
@@ -58,6 +59,7 @@
 
 <script setup>
 import { computed } from 'vue';
+import { Icon } from '@iconify/vue';
 
 const props = defineProps({
   title: { type: String, required: true },
@@ -148,6 +150,9 @@ const normalizedRepos = computed(() => {
 }
 
 .project-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   padding: 0.5rem 1rem;
   border-radius: 999px;
   font-size: 0.8rem;
@@ -156,6 +161,10 @@ const normalizedRepos = computed(() => {
   background: var(--accent);
   color: #0a080e;
   transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.project-card__btn-icon {
+  font-size: 1rem;
 }
 
 .project-card__btn:hover {
