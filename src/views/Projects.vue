@@ -62,8 +62,18 @@ import gestionAcademicaImg from '../assets/projects/gestion-academica/dashboard.
 import clinicaAmbulatoriaImg from '../assets/projects/clinica-ambulatoria/menu-principal.png';
 import salesDashboardImg from '../assets/projects/sales-live-dashboard/dashboard.png';
 import cercayaImg from '../assets/projects/cercaya/mapa.png';
+import ecommerceImg from '../assets/projects/ecommerce/dashboard.png';
 
 const projects = ref([
+{
+  title: 'Ecommerce — Tienda + Panel de Administrador',
+  description: 'Ecommerce Full Stack con catálogo, carrito, checkout con pago real (Stripe) y generación automática de boleta en PDF. Incluye panel de administrador completo: dashboard con gráficos (sparkline, barras, donut, todo en SVG/CSS puro sin librerías), gestión de productos con carrusel de imágenes, categorías y pedidos, todo conectado a la API real.',
+  image: ecommerceImg,
+  demoUrl: 'https://ecommerce-seven-theta-17.vercel.app',
+  repoUrl: 'https://github.com/Jheremy-Conca/ECOMMERCE',
+  stack: ['Nuxt 3', 'Pinia', 'Tailwind', 'Node.js', 'Express', 'Prisma', 'Supabase', 'Stripe', 'Cloudinary'],
+  accentColor: '#00d68f',
+},
   {
     title: 'Sistema de Gestión de Roles y Usuarios',
     description: 'Sistema Full Stack para gestión de usuarios, roles y permisos. Incluye autenticación JWT, recuperación de contraseña por email, control de acceso basado en permisos y modo oscuro.',
