@@ -2,22 +2,21 @@
   <BaseCard class="about-card">
     <div class="text-container">
       <h2>{{ titulo }}</h2>
-      <p v-html="descripcion"></p>
+      <p>{{ descripcion }}</p>
     </div>
 
     <div class="image-container">
-      <img :src="senkuImg" alt="Senku" />
+      <img src="/senku.png" alt="Senku" />
     </div>
   </BaseCard>
 </template>
 
 <script setup>
 import BaseCard from '../ui/BaseCard.vue'
-import senkuImg from '../../assets/images/senku.png'
 
 defineProps({
-  titulo: String,
-  descripcion: String
+  titulo: { type: String, default: '' },
+  descripcion: { type: String, default: '' },
 })
 </script>
 

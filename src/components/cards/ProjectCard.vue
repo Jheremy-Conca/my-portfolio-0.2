@@ -20,7 +20,7 @@
           class="project-card__btn"
           @click.stop
         >
-          Ver demo
+          {{ t.projectDemo }}
         </a>
 
         <!-- Múltiples repos (frontend/backend, etc.) -->
@@ -44,22 +44,20 @@
       <p class="project-card__desc">{{ description }}</p>
 
       <div class="project-card__stack">
-        <span
-          v-for="tech in stack"
-          :key="tech"
-          class="project-card__badge"
-        >
+        <span v-for="tech in stack" :key="tech" class="project-card__badge">
           {{ tech }}
         </span>
       </div>
     </div>
-    
   </article>
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { Icon } from '@iconify/vue';
+import { computed } from 'vue'
+import { Icon } from '@iconify/vue'
+import { useLocale } from '../../composables/useLocale'
+
+const { t } = useLocale()
 
 const props = defineProps({
   title: { type: String, required: true },
@@ -73,13 +71,13 @@ const props = defineProps({
   repos: { type: Array, default: () => [] },
   stack: { type: Array, default: () => [] },
   accentColor: { type: String, default: '#7c5cff' },
-});
+})
 
 const normalizedRepos = computed(() => {
-  if (props.repos.length > 0) return props.repos;
-  if (props.repoUrl) return [{ label: 'Código', url: props.repoUrl }];
-  return [];
-});
+  if (props.repos.length > 0) return props.repos
+  if (props.repoUrl) return [{ label: t.value.projectCode, url: props.repoUrl }]
+  return []
+})
 </script>
 
 <style scoped>
@@ -91,7 +89,10 @@ const normalizedRepos = computed(() => {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .project-card:hover {
@@ -160,7 +161,9 @@ const normalizedRepos = computed(() => {
   text-decoration: none;
   background: var(--accent);
   color: #0a080e;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
 }
 
 .project-card__btn-icon {

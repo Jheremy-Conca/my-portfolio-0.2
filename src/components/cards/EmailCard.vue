@@ -1,6 +1,10 @@
 <template>
   <BaseCard bg="#0a947d" class="email-card">
-    <a href="mailto:concajheremy@gmail.com" class="email-link" aria-label="Enviar email a Jheremy">
+    <a
+      href="mailto:concajheremy@gmail.com"
+      class="email-link"
+      aria-label="Enviar email a Jheremy"
+    >
       <Icon icon="mdi:open-in-new" class="email-open-icon" />
     </a>
     <Icon icon="mdi:email-outline" class="email-main-icon" />

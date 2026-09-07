@@ -1,34 +1,25 @@
 <template>
-  <a
-    class="cv-card"
-    :href="cvPath"
-    download
-    :aria-label="locale === 'es' ? 'Descargar CV' : 'Download CV'"
-  >
+  <a class="cv-card" :href="cvPath" download :aria-label="t.cvAria">
     <span class="cv-card__icon">📄</span>
     <span class="cv-card__text">
-      <span class="cv-card__title">
-        {{ locale === 'es' ? 'Mi CV' : 'My Resume' }}
-      </span>
-      <span class="cv-card__hint">
-        {{ locale === 'es' ? 'Descargar PDF' : 'Download PDF' }}
-      </span>
+      <span class="cv-card__title">{{ t.cvTitle }}</span>
+      <span class="cv-card__hint">{{ t.cvHint }}</span>
     </span>
     <span class="cv-card__arrow">↓</span>
   </a>
 </template>
 
 <script setup>
-import { useLocale } from '../../composables/useLocale';
+import { useLocale } from '../../composables/useLocale'
 
 defineProps({
   cvPath: {
     type: String,
     default: '/cv-jheremy-conca.pdf',
   },
-});
+})
 
-const { locale } = useLocale();
+const { t } = useLocale()
 </script>
 
 <style scoped>
@@ -44,7 +35,9 @@ const { locale } = useLocale();
   text-decoration: none;
   background: linear-gradient(135deg, #dc2626 0%, #7f1d1d 100%);
   color: #fff;
-  transition: transform 0.2s ease, filter 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
 }
 
 .cv-card:hover {
@@ -66,9 +59,10 @@ const { locale } = useLocale();
 }
 
 .cv-card__title {
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: 0.3px;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .cv-card__hint {

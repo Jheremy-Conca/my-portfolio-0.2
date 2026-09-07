@@ -1,17 +1,18 @@
 <template>
   <div class="not-found">
     <p class="not-found__code">404</p>
-    <h1 class="not-found__title">Esta ruta no existe</h1>
-    <p class="not-found__desc">
-      Parece que seguiste un enlace roto, o escribiste mal la dirección.
-    </p>
+    <h1 class="not-found__title">{{ t.notFoundTitle }}</h1>
+    <p class="not-found__desc">{{ t.notFoundDesc }}</p>
     <router-link to="/" class="not-found__btn">
-      ← Volver al inicio
+      {{ t.backHome }}
     </router-link>
   </div>
 </template>
 
 <script setup>
+import { useLocale } from '../composables/useLocale'
+
+const { t } = useLocale()
 </script>
 
 <style scoped>
@@ -59,7 +60,9 @@
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
 }
 
 .not-found__btn:hover {

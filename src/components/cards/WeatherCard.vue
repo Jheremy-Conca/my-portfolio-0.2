@@ -13,7 +13,7 @@
       </div>
 
       <div class="state-image">
-        <img :src="stateImage" @error="useFallback" />
+        <img :src="stateImage" alt="" @error="useFallback" />
       </div>
     </div>
   </BaseCard>
@@ -21,27 +21,21 @@
 
 <script setup>
 import BaseCard from '../ui/BaseCard.vue'
-import { useWeatherChat } from '../../composables/useWeatherChat.js'
-import { computed } from 'vue';
-import { useLocale } from '../../composables/useLocale';
+import { useWeather } from '../../composables/useWeather.js'
+import { computed } from 'vue'
+import { useLocale } from '../../composables/useLocale'
 
-const { t } = useLocale();
+const { t } = useLocale()
 
-const {
-  temperature,
-  weatherCondition,
-  localTime,
-  weatherIcon,
-  stateImage,
-  useFallback
-} = useWeatherChat()
+const { temperature, localTime, weatherIcon, stateImage, useFallback } =
+  useWeather()
 
 // Traduce la condición climática según la temperatura actual
 const weatherLabel = computed(() => {
-  if (temperature.value >= 25) return t.value.weatherWarm;
-  if (temperature.value <= 15) return t.value.weatherCold;
-  return t.value.weatherMild;
-});
+  if (temperature.value >= 25) return t.value.weatherWarm
+  if (temperature.value <= 15) return t.value.weatherCold
+  return t.value.weatherMild
+})
 </script>
 
 <style scoped>

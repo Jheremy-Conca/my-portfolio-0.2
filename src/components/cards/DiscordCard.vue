@@ -6,9 +6,9 @@
   >
     <div class="discord-content">
       <Icon icon="mdi:discord" class="discord-icon" />
-      <h3 class="discord-title">Discord</h3>
+      <h3 class="discord-title">{{ t.discordTitle }}</h3>
       <p class="discord-status-text">
-        <template v-if="presence === null">Cargando estado...</template>
+        <template v-if="presence === null">{{ t.discordLoading }}</template>
         <template v-else>{{ presenceMessage }}</template>
       </p>
       <span class="status-indicator"></span>
@@ -17,11 +17,28 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useDiscord } from '../../composables/useDiscord'
+import { useLocale } from '../../composables/useLocale'
 
-const { presence, fetchDiscordStatus, presenceMessage, statusClass } = useDiscord()
+const { presence, fetchDiscordStatus, statusClass } = useDiscord()
+const { t } = useLocale()
+
+const presenceMessage = computed(() => {
+  switch (presence.value) {
+    case 'online':
+      return t.value.discordOnline
+    case 'idle':
+      return t.value.discordIdle
+    case 'dnd':
+      return t.value.discordDnd
+    case 'offline':
+      return t.value.discordOffline
+    default:
+      return t.value.discordUnknown
+  }
+})
 
 let intervalId
 onMounted(() => {
@@ -37,7 +54,7 @@ onUnmounted(() => clearInterval(intervalId))
   justify-content: center;
   align-items: center;
   /* 👇 Agregamos el fondo directamente aquí */
-  background-color: rgba(38, 61, 122, 0.774); 
+  background-color: rgba(38, 61, 122, 0.774);
   border-radius: 12px; /* Opcional: para que tenga bordes redondeados bonitos */
 }
 
@@ -75,8 +92,16 @@ onUnmounted(() => clearInterval(intervalId))
   background-color: #43b581;
 }
 
-.online .status-indicator { background-color: #43b581; }
-.idle .status-indicator { background-color: #faa61a; }
-.dnd .status-indicator { background-color: #f04747; }
-.offline .status-indicator { background-color: #747f8d; }
+.online .status-indicator {
+  background-color: #43b581;
+}
+.idle .status-indicator {
+  background-color: #faa61a;
+}
+.dnd .status-indicator {
+  background-color: #f04747;
+}
+.offline .status-indicator {
+  background-color: #747f8d;
+}
 </style>

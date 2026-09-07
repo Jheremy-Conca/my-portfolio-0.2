@@ -1,12 +1,102 @@
-/* Background global */
-body {
-  background-color: rgb(9 3 14);
-  color: white; /* opcional pero recomendado */
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   Design tokens
+   El sitio es dark-only: definimos la paleta una sola vez.
+   El color de fondo se controla en runtime con --bg-color
+   (ver composables/useTheme.js).
+   ============================================================ */
+:root {
+  --bg-color: #0a030f;
+
+  /* Tipografía del proyecto:
+     - display: Space Grotesk (geométrica, técnica) para títulos y números grandes
+     - sans: Inter para cuerpo y UI */
+  --font-display:
+    'Space Grotesk Variable', 'Space Grotesk', system-ui, sans-serif;
+  --font-sans:
+    'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius: 0.75rem;
+
+  --background: #0a030f;
+  --foreground: #ffffff;
+
+  --card: rgba(117, 82, 161, 0.534);
+  --card-foreground: #ffffff;
+
+  --popover: #17111f;
+  --popover-foreground: #ffffff;
+
+  --primary: #7c5cff;
+  --primary-foreground: #0a080e;
+
+  --secondary: rgba(255, 255, 255, 0.08);
+  --secondary-foreground: #ffffff;
+
+  --accent: rgba(255, 255, 255, 0.1);
+  --accent-foreground: #ffffff;
+
+  --muted: rgba(255, 255, 255, 0.06);
+  --muted-foreground: rgba(255, 255, 255, 0.6);
+
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #7c5cff;
 }
 
-/* Estilos globales */
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ============================================================
+   Estilos globales
+   ============================================================ */
 * {
   box-sizing: border-box;
-  font-family: Montserrat, sans-serif;
-  justify-content: center;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
 }

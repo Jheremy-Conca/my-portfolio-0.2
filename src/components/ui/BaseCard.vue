@@ -8,12 +8,12 @@
 defineProps({
   bg: {
     type: String,
-    default: 'rgba(117, 82, 161, 0.534)'
+    default: 'rgba(117, 82, 161, 0.534)',
   },
   hoverable: {
     type: Boolean,
-    default: true
-  }
+    default: true,
+  },
 })
 </script>
 
@@ -29,7 +29,9 @@ defineProps({
 }
 
 .base-card.hoverable {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .base-card.hoverable:hover {

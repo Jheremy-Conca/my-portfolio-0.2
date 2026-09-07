@@ -23,7 +23,6 @@ export function useLastfm(pollIntervalMs = 15000) {
       // 3. Cualquier otra respuesta de error (401, 500, etc.)
       console.warn(`Error en la API: Código de estado ${res.status}`)
       track.value = null
-
     } catch (err) {
       console.error('Error de red al obtener el track:', err)
       track.value = null
@@ -48,7 +47,6 @@ export function useLastfm(pollIntervalMs = 15000) {
     if (pollTimer) return // ya está corriendo, evita duplicar timers
     pollTimer = setInterval(fetchTrack, pollIntervalMs)
   }
-
 
   const stopPolling = () => {
     if (pollTimer) {

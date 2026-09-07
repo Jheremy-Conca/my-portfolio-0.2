@@ -1,6 +1,12 @@
 <template>
   <BaseCard bg="black" class="x-card">
-    <a href="https://x.com/jheremyxv" target="_blank" aria-label="Ir a X / Twitter" class="x-link">
+    <a
+      href="https://x.com/jheremyxv"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Ir a X / Twitter"
+      class="x-link"
+    >
       <Icon icon="mdi:open-in-new" />
     </a>
 
@@ -35,7 +41,9 @@ import BaseCard from '../ui/BaseCard.vue'
   color: white;
   font-size: 22px;
   opacity: 0.8;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .x-link:hover {

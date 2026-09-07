@@ -2,23 +2,23 @@
   <button
     class="lang-card"
     :class="{ 'lang-card--en': locale === 'en' }"
+    :aria-label="t.langAria"
     @click="toggleLang"
-    :aria-label="locale === 'es' ? 'Switch to English' : 'Cambiar a Español'"
   >
     <span class="lang-card__flag">{{ locale === 'es' ? '🇵🇪' : '🇺🇸' }}</span>
     <span class="lang-card__text">
-      <span class="lang-card__current">{{ locale === 'es' ? 'ES' : 'EN' }}</span>
-      <span class="lang-card__hint">
-        {{ locale === 'es' ? 'Cambiar a inglés' : 'Switch to Spanish' }}
-      </span>
+      <span class="lang-card__current">{{
+        locale === 'es' ? 'ES' : 'EN'
+      }}</span>
+      <span class="lang-card__hint">{{ t.langHint }}</span>
     </span>
   </button>
 </template>
 
 <script setup>
-import { useLocale } from '../../composables/useLocale';
+import { useLocale } from '../../composables/useLocale'
 
-const { locale, toggleLang } = useLocale();
+const { locale, toggleLang, t } = useLocale()
 </script>
 
 <style scoped>
@@ -35,7 +35,9 @@ const { locale, toggleLang } = useLocale();
   cursor: pointer;
   background: linear-gradient(135deg, #6d28d9 0%, #312e81 100%);
   color: #fff;
-  transition: transform 0.2s ease, filter 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
 }
 
 .lang-card:hover {
@@ -60,9 +62,10 @@ const { locale, toggleLang } = useLocale();
 }
 
 .lang-card__current {
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: 0.5px;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .lang-card__hint {

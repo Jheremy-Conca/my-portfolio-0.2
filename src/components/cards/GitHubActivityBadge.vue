@@ -24,51 +24,57 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { Icon } from '@iconify/vue';
+import { ref, onMounted } from 'vue'
+import { Icon } from '@iconify/vue'
 
 // Usuario fijo — cambia esto si tu usuario de GitHub es distinto.
-const GITHUB_USER = 'Jheremy-Conca';
+const GITHUB_USER = 'Jheremy-Conca'
 
-const cargando = ref(true);
-const error = ref(false);
-const eventos = ref([]);
+const cargando = ref(true)
+const error = ref(false)
+const eventos = ref([])
 
 // Traduce el tipo de evento público de GitHub a un texto legible.
 const describirEvento = (event) => {
-  const repo = event.repo?.name?.split('/')[1] ?? event.repo?.name;
-  const repoUrl = `https://github.com/${event.repo?.name}`;
+  const repo = event.repo?.name?.split('/')[1] ?? event.repo?.name
+  const repoUrl = `https://github.com/${event.repo?.name}`
 
   switch (event.type) {
     case 'PushEvent': {
-      const commits = event.payload?.commits?.length ?? 1;
-      return { texto: `Subió ${commits} commit${commits > 1 ? 's' : ''} a`, repo, repoUrl };
+      const commits = event.payload?.commits?.length ?? 1
+      return {
+        texto: `Subió ${commits} commit${commits > 1 ? 's' : ''} a`,
+        repo,
+        repoUrl,
+      }
     }
     case 'CreateEvent':
-      return { texto: 'Creó', repo, repoUrl };
+      return { texto: 'Creó', repo, repoUrl }
     case 'PullRequestEvent':
-      return { texto: 'Abrió un pull request en', repo, repoUrl };
+      return { texto: 'Abrió un pull request en', repo, repoUrl }
     case 'IssuesEvent':
-      return { texto: 'Reportó un issue en', repo, repoUrl };
+      return { texto: 'Reportó un issue en', repo, repoUrl }
     case 'WatchEvent':
-      return { texto: 'Marcó con estrella', repo, repoUrl };
+      return { texto: 'Marcó con estrella', repo, repoUrl }
     default:
-      return { texto: 'Actividad en', repo, repoUrl };
+      return { texto: 'Actividad en', repo, repoUrl }
   }
-};
+}
 
 onMounted(async () => {
   try {
-    const res = await fetch(`https://api.github.com/users/${GITHUB_USER}/events/public?per_page=5`);
-    if (!res.ok) throw new Error('respuesta no ok');
-    const data = await res.json();
-    eventos.value = data.slice(0, 4).map(describirEvento);
-  } catch (e) {
-    error.value = true;
+    const res = await fetch(
+      `https://api.github.com/users/${GITHUB_USER}/events/public?per_page=5`,
+    )
+    if (!res.ok) throw new Error('respuesta no ok')
+    const data = await res.json()
+    eventos.value = data.slice(0, 4).map(describirEvento)
+  } catch {
+    error.value = true
   } finally {
-    cargando.value = false;
+    cargando.value = false
   }
-});
+})
 </script>
 
 <style scoped>

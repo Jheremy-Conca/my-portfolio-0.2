@@ -1,7 +1,6 @@
 <template>
   <!-- ░░░░░ BENTO GRID ÚNICO (12 columnas) ░░░░░ -->
   <div class="bento-grid">
-
     <!-- FILA 1: About (8) + Switch/IG apilados (4) -->
     <AboutCard
       class="card-about"
@@ -31,14 +30,10 @@
     <LanguageCard class="card-lang" />
     <CvCard class="card-cv" />
     <SpotifyCard class="card-spotify" />
-
-
   </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
-
 import AboutCard from '../components/cards/AboutCard.vue'
 import SwitchIgCard from '../components/cards/SwitchIgCard.vue'
 import YearsCard from '../components/cards/YearsCard.vue'
@@ -57,10 +52,6 @@ import CvCard from '../components/cards/CvCard.vue'
 import { useLocale } from '../composables/useLocale'
 
 const { t } = useLocale()
-
-onMounted(() => {
-  document.body.style.background = 'linear-gradient(to bottom, #0a030f, #0a030f)'
-})
 </script>
 
 <style scoped>
@@ -125,9 +116,8 @@ onMounted(() => {
 .card-cv {
   grid-column: span 3;
 }
-.card-spotify{
+.card-spotify {
   grid-column: span 6;
-
 }
 
 /* =======================
@@ -138,25 +128,47 @@ onMounted(() => {
     grid-template-columns: repeat(6, 1fr);
   }
 
-  .card-about    { grid-column: span 6; }
-  .card-side     { grid-column: span 6; flex-direction: row; }
+  .card-about {
+    grid-column: span 6;
+  }
+  .card-side {
+    grid-column: span 6;
+    flex-direction: row;
+  }
 
-  .card-years    { grid-column: span 3; }
-  .card-in       { grid-column: span 3; }
-  .card-projects { grid-column: span 6; }
+  .card-years {
+    grid-column: span 3;
+  }
+  .card-in {
+    grid-column: span 3;
+  }
+  .card-projects {
+    grid-column: span 6;
+  }
 
   .card-github,
   .card-tech,
-  .card-email    { grid-column: span 2; }
+  .card-email {
+    grid-column: span 2;
+  }
 
-  .card-weather  { grid-column: span 6; }
+  .card-weather {
+    grid-column: span 6;
+  }
   .card-x,
-  .card-discord  { grid-column: span 3; }
+  .card-discord {
+    grid-column: span 3;
+  }
 
-  .card-lang     { grid-column: span 3; }
-  .card-cv       { grid-column: span 3; }
-  .card-spotify  { grid-column: span 6; }
-
+  .card-lang {
+    grid-column: span 3;
+  }
+  .card-cv {
+    grid-column: span 3;
+  }
+  .card-spotify {
+    grid-column: span 6;
+  }
 }
 
 @media (max-width: 640px) {

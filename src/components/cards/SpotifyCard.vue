@@ -3,7 +3,7 @@
   <BaseCard v-if="isLoading" bg="#121212" class="spotify-card state-card">
     <div class="loader-content">
       <Icon icon="mdi:spotify" class="spotify-icon spin" />
-      <div class="loader">Cargando última canción escuchada...</div>
+      <div class="loader">{{ t.spotifyLoading }}</div>
     </div>
   </BaseCard>
 
@@ -18,7 +18,9 @@
     <div class="overlay">
       <div class="track-info">
         <p class="recent-text">
-          <strong>{{ isNowPlaying ? 'Escuchando ahora' : 'Escuchando recientemente' }}</strong>
+          <strong>{{
+            isNowPlaying ? t.spotifyNowPlaying : t.spotifyRecent
+          }}</strong>
         </p>
         <h2 class="track-name">{{ trackName }}</h2>
         <p class="track-artists">{{ artistNames }}</p>
@@ -27,7 +29,14 @@
           <svg viewBox="0 0 110 60" fill="#fff">
             <polygon points="5,20 5,40 25,30" />
             <g stroke="#fff" stroke-width="3" stroke-linecap="round">
-              <line v-for="x in 9" :key="x" :x1="22 + x * 8" y1="24" :x2="22 + x * 8" y2="36" />
+              <line
+                v-for="x in 9"
+                :key="x"
+                :x1="22 + x * 8"
+                y1="24"
+                :x2="22 + x * 8"
+                y2="36"
+              />
             </g>
           </svg>
         </div>
@@ -39,8 +48,8 @@
   <BaseCard v-else bg="#121212" class="spotify-card state-card">
     <Icon icon="mdi:spotify" class="spotify-icon static" />
     <div class="offline-content">
-      <p class="offline-title">Actualmente desconectado</p>
-      <p class="offline-subtitle">No hay reproducciones recientes. ¡Regresa más tarde! 😴</p>
+      <p class="offline-title">{{ t.spotifyOfflineTitle }}</p>
+      <p class="offline-subtitle">{{ t.spotifyOfflineSubtitle }}</p>
     </div>
   </BaseCard>
 </template>
@@ -50,8 +59,18 @@ import { onMounted, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import BaseCard from '../ui/BaseCard.vue'
 import { useLastfm } from '../../composables/useLastfm'
+import { useLocale } from '../../composables/useLocale'
 
-const { track, fetchTrack, startPolling, artistNames, trackName, albumImage, isNowPlaying } = useLastfm()
+const { t } = useLocale()
+const {
+  track,
+  fetchTrack,
+  startPolling,
+  artistNames,
+  trackName,
+  albumImage,
+  isNowPlaying,
+} = useLastfm()
 const isLoading = ref(true)
 
 onMounted(async () => {
@@ -160,6 +179,8 @@ onMounted(async () => {
 }
 
 @keyframes spin {
-  100% { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

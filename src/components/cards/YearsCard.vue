@@ -8,13 +8,11 @@
 
 <script setup>
 import BaseCard from '../ui/BaseCard.vue'
-import { useLocale } from '../../composables/useLocale';
-const { t } = useLocale();
+import { useLocale } from '../../composables/useLocale'
+const { t } = useLocale()
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
 .years-card {
   color: white;
   display: flex;
@@ -22,7 +20,7 @@ const { t } = useLocale();
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-display);
 }
 
 .years-card h1 {

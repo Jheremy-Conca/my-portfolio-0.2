@@ -6,7 +6,11 @@
   >
     <h1>{{ t.projectsTitle }}</h1>
     <p>{{ t.projectsDesc }}</p>
-    <router-link to="/projects" class="icon-projects-top-right" aria-label="Ir a proyectos">
+    <router-link
+      to="/projects"
+      class="icon-projects-top-right"
+      aria-label="Ir a proyectos"
+    >
       <Icon icon="mdi:arrow-right" width="32" height="32" color="#D3D3D3" />
     </router-link>
   </BaseCard>
@@ -15,8 +19,8 @@
 <script setup>
 import { Icon } from '@iconify/vue'
 import BaseCard from '../ui/BaseCard.vue'
-import { useLocale } from '../../composables/useLocale';
-const { t } = useLocale();
+import { useLocale } from '../../composables/useLocale'
+const { t } = useLocale()
 </script>
 
 <style scoped>

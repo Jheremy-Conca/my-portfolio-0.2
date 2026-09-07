@@ -2,12 +2,10 @@
   <div class="projects-view">
     <header class="projects-view__header">
       <router-link to="/" class="projects-view__back">
-        ← Volver al inicio
+        {{ t.backHome }}
       </router-link>
-      <h1 class="projects-view__title">Proyectos y pruebas</h1>
-      <p class="projects-view__subtitle">
-        Aquí encontrarás algunos de mis proyectos y experimentos.
-      </p>
+      <h1 class="projects-view__title">{{ t.projectsTitle }}</h1>
+      <p class="projects-view__subtitle">{{ t.projectsSubtitle }}</p>
     </header>
 
     <div class="projects-view__filters">
@@ -16,7 +14,7 @@
         :class="{ 'filter-chip--active': activeFilter === 'all' }"
         @click="activeFilter = 'all'"
       >
-        Todos
+        {{ t.filterAll }}
       </button>
       <button
         v-for="tech in visibleTechs"
@@ -32,15 +30,15 @@
         class="filter-chip filter-chip--toggle"
         @click="showAllTechs = !showAllTechs"
       >
-        {{ showAllTechs ? 'Ver menos' : `+${allTechs.length - TECHS_LIMIT} más` }}
+        {{
+          showAllTechs
+            ? t.filterSeeLess
+            : `+${allTechs.length - TECHS_LIMIT} ${t.filterMore}`
+        }}
       </button>
     </div>
 
-    <transition-group
-      name="fade-up"
-      tag="div"
-      class="projects-view__grid"
-    >
+    <transition-group name="fade-up" tag="div" class="projects-view__grid">
       <ProjectCard
         v-for="project in filteredProjects"
         :key="project.title"
@@ -49,55 +47,94 @@
     </transition-group>
 
     <p v-if="filteredProjects.length === 0" class="projects-view__empty">
-      No hay proyectos con esa tecnología todavía.
+      {{ t.projectsEmpty }}
     </p>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import ProjectCard from '../components/cards/ProjectCard.vue';
-import gestionRolesImg from '../assets/projects/gestion-roles/usuarios.png';
-import gestionAcademicaImg from '../assets/projects/gestion-academica/dashboard.png';
-import clinicaAmbulatoriaImg from '../assets/projects/clinica-ambulatoria/menu-principal.png';
-import salesDashboardImg from '../assets/projects/sales-live-dashboard/dashboard.png';
-import cercayaImg from '../assets/projects/cercaya/mapa.png';
-import ecommerceImg from '../assets/projects/ecommerce/dashboard.png';
+import { ref, computed } from 'vue'
+import ProjectCard from '../components/cards/ProjectCard.vue'
+import { useLocale } from '../composables/useLocale'
+
+const { t } = useLocale()
+import gestionRolesImg from '../assets/projects/gestion-roles/usuarios.png'
+import gestionAcademicaImg from '../assets/projects/gestion-academica/dashboard.png'
+import clinicaAmbulatoriaImg from '../assets/projects/clinica-ambulatoria/menu-principal.png'
+import salesDashboardImg from '../assets/projects/sales-live-dashboard/dashboard.png'
+import cercayaImg from '../assets/projects/cercaya/mapa.png'
+import ecommerceImg from '../assets/projects/ecommerce/dashboard.png'
 
 const projects = ref([
-{
-  title: 'Ecommerce — Tienda + Panel de Administrador',
-  description: 'Ecommerce Full Stack con catálogo, carrito, checkout con pago real (Stripe) y generación automática de boleta en PDF. Incluye panel de administrador completo: dashboard con gráficos (sparkline, barras, donut, todo en SVG/CSS puro sin librerías), gestión de productos con carrusel de imágenes, categorías y pedidos, todo conectado a la API real.',
-  image: ecommerceImg,
-  demoUrl: 'https://ecommerce-seven-theta-17.vercel.app',
-  repoUrl: 'https://github.com/Jheremy-Conca/ECOMMERCE',
-  stack: ['Nuxt 3', 'Pinia', 'Tailwind', 'Node.js', 'Express', 'Prisma', 'Supabase', 'Stripe', 'Cloudinary'],
-  accentColor: '#00d68f',
-},
+  {
+    title: 'Ecommerce — Tienda + Panel de Administrador',
+    description:
+      'Ecommerce Full Stack con catálogo, carrito, checkout con pago real (Stripe) y generación automática de boleta en PDF. Incluye panel de administrador completo: dashboard con gráficos (sparkline, barras, donut, todo en SVG/CSS puro sin librerías), gestión de productos con carrusel de imágenes, categorías y pedidos, todo conectado a la API real.',
+    image: ecommerceImg,
+    demoUrl: 'https://ecommerce-seven-theta-17.vercel.app',
+    repoUrl: 'https://github.com/Jheremy-Conca/ECOMMERCE',
+    stack: [
+      'Nuxt 3',
+      'Pinia',
+      'Tailwind',
+      'Node.js',
+      'Express',
+      'Prisma',
+      'Supabase',
+      'Stripe',
+      'Cloudinary',
+    ],
+    accentColor: '#00d68f',
+  },
   {
     title: 'Sistema de Gestión de Roles y Usuarios',
-    description: 'Sistema Full Stack para gestión de usuarios, roles y permisos. Incluye autenticación JWT, recuperación de contraseña por email, control de acceso basado en permisos y modo oscuro.',
+    description:
+      'Sistema Full Stack para gestión de usuarios, roles y permisos. Incluye autenticación JWT, recuperación de contraseña por email, control de acceso basado en permisos y modo oscuro.',
     image: gestionRolesImg,
     demoUrl: 'https://gestion-roles-jheremydev.netlify.app',
     repoUrl: 'https://github.com/Jheremy-Conca/gestion-roles',
-    stack: ['Vue 3', 'Vite', 'Pinia', 'Node.js', 'Express', 'PostgreSQL', 'JWT'],
+    stack: [
+      'Vue 3',
+      'Vite',
+      'Pinia',
+      'Node.js',
+      'Express',
+      'PostgreSQL',
+      'JWT',
+    ],
     accentColor: '#7c5cff',
   },
   {
     title: 'Sistema de Gestión Académica',
-    description: 'Sistema Full Stack para la administración de alumnos, profesores, cursos, salones e inscripciones. Incluye autenticación JWT con filtros personalizados, formularios reactivos y exportación de datos a Excel.',
+    description:
+      'Sistema Full Stack para la administración de alumnos, profesores, cursos, salones e inscripciones. Incluye autenticación JWT con filtros personalizados, formularios reactivos y exportación de datos a Excel.',
     image: gestionAcademicaImg,
     demoUrl: '',
     repos: [
-      { label: 'Frontend', url: 'https://github.com/Jheremy-Conca/frontend-gestion-inscripciones' },
-      { label: 'Backend', url: 'https://github.com/Jheremy-Conca/backend-gestion-inscripciones' },
+      {
+        label: 'Frontend',
+        url: 'https://github.com/Jheremy-Conca/frontend-gestion-inscripciones',
+      },
+      {
+        label: 'Backend',
+        url: 'https://github.com/Jheremy-Conca/backend-gestion-inscripciones',
+      },
     ],
-    stack: ['Angular', 'TypeScript', 'RxJS', 'Bootstrap 5', 'Spring Boot', 'Spring Security', 'MySQL'],
+    stack: [
+      'Angular',
+      'TypeScript',
+      'RxJS',
+      'Bootstrap 5',
+      'Spring Boot',
+      'Spring Security',
+      'MySQL',
+    ],
     accentColor: '#2ecc71',
   },
   {
     title: 'Sistema de Gestión Clínica Ambulatoria',
-    description: 'Aplicación de escritorio en Java (Swing) para la gestión integral de una clínica ambulatoria: registro de pacientes, médicos y consultorios, agendamiento de citas médicas, diagnósticos y generación de comprobantes de pago (boletas/facturas) en PDF. Arquitectura MVC con DAOs, persistencia en MySQL y aplicación de los cuatro pilares de la POO.',
+    description:
+      'Aplicación de escritorio en Java (Swing) para la gestión integral de una clínica ambulatoria: registro de pacientes, médicos y consultorios, agendamiento de citas médicas, diagnósticos y generación de comprobantes de pago (boletas/facturas) en PDF. Arquitectura MVC con DAOs, persistencia en MySQL y aplicación de los cuatro pilares de la POO.',
     image: clinicaAmbulatoriaImg,
     demoUrl: '',
     repoUrl: 'https://github.com/Jheremy-Conca/PROJECT-POO-CLINICA-INNOVACION',
@@ -106,45 +143,68 @@ const projects = ref([
   },
   {
     title: 'Sales Live Dashboard',
-    description: 'Dashboard de ventas en tiempo real. El backend genera ventas simuladas cada 3 segundos, las persiste en PostgreSQL (Neon) vía Prisma, y las transmite en vivo al frontend por Socket.IO.',
+    description:
+      'Dashboard de ventas en tiempo real. El backend genera ventas simuladas cada 3 segundos, las persiste en PostgreSQL (Neon) vía Prisma, y las transmite en vivo al frontend por Socket.IO.',
     image: salesDashboardImg,
     demoUrl: 'https://sales-livedashboard.netlify.app',
     repoUrl: 'https://github.com/Jheremy-Conca/sales-live-dashboard',
-    stack: ['Vue 3', 'Pinia', 'Chart.js', 'Node.js', 'Express', 'Socket.IO', 'PostgreSQL', 'Prisma'],
+    stack: [
+      'Vue 3',
+      'Pinia',
+      'Chart.js',
+      'Node.js',
+      'Express',
+      'Socket.IO',
+      'PostgreSQL',
+      'Prisma',
+    ],
     accentColor: '#f39c12',
   },
   {
     title: 'Cercaya',
-    description: 'Plataforma de lugares y reseñas con búsqueda geoespacial: permite registrar lugares, calificarlos con reseñas y fotos, y encontrar los más cercanos según tu ubicación usando PostGIS. Incluye autenticación JWT, subida de imágenes a Cloudinary y mapa interactivo con Leaflet.',
+    description:
+      'Plataforma de lugares y reseñas con búsqueda geoespacial: permite registrar lugares, calificarlos con reseñas y fotos, y encontrar los más cercanos según tu ubicación usando PostGIS. Incluye autenticación JWT, subida de imágenes a Cloudinary y mapa interactivo con Leaflet.',
     image: cercayaImg,
     demoUrl: 'https://cercaya.netlify.app',
     repoUrl: 'https://github.com/Jheremy-Conca/cercaya',
-    stack: ['Vue 3', 'Vite', 'Pinia', 'Leaflet', 'Node.js', 'Express', 'Sequelize', 'PostgreSQL', 'PostGIS', 'JWT', 'Cloudinary'],
+    stack: [
+      'Vue 3',
+      'Vite',
+      'Pinia',
+      'Leaflet',
+      'Node.js',
+      'Express',
+      'Sequelize',
+      'PostgreSQL',
+      'PostGIS',
+      'JWT',
+      'Cloudinary',
+    ],
     accentColor: '#e74c3c',
   },
-]);
+])
 
-const activeFilter = ref('all');
+const activeFilter = ref('all')
 
 // Cuántos chips de tecnología se muestran antes de colapsar el resto
 // detrás del botón "+N más".
-const TECHS_LIMIT = 8;
-const showAllTechs = ref(false);
+const TECHS_LIMIT = 8
+const showAllTechs = ref(false)
 
 const allTechs = computed(() => {
-  const set = new Set();
-  projects.value.forEach((p) => p.stack.forEach((t) => set.add(t)));
-  return Array.from(set);
-});
+  const set = new Set()
+  projects.value.forEach((p) => p.stack.forEach((t) => set.add(t)))
+  return Array.from(set)
+})
 
 const visibleTechs = computed(() =>
-  showAllTechs.value ? allTechs.value : allTechs.value.slice(0, TECHS_LIMIT)
-);
+  showAllTechs.value ? allTechs.value : allTechs.value.slice(0, TECHS_LIMIT),
+)
 
 const filteredProjects = computed(() => {
-  if (activeFilter.value === 'all') return projects.value;
-  return projects.value.filter((p) => p.stack.includes(activeFilter.value));
-});
+  if (activeFilter.value === 'all') return projects.value
+  return projects.value.filter((p) => p.stack.includes(activeFilter.value))
+})
 </script>
 
 <style scoped>
