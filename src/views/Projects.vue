@@ -64,8 +64,29 @@ import clinicaAmbulatoriaImg from '../assets/projects/clinica-ambulatoria/menu-p
 import salesDashboardImg from '../assets/projects/sales-live-dashboard/dashboard.png'
 import cercayaImg from '../assets/projects/cercaya/mapa.png'
 import ecommerceImg from '../assets/projects/ecommerce/dashboard.png'
+import reservafyImg from '../assets/projects/reservafy/dashboard.png'
 
 const projects = ref([
+  {
+    title: 'Reservafy — SaaS de Reservas Online',
+    description:
+      'SaaS multi-tenant de reservas de citas para negocios de servicios (spas, consultorios, peluquerías). Página pública de reserva sin necesidad de cuenta con cálculo de horarios disponibles, panel de administrador con dashboard y calendario, y pagos vía MercadoPago (Yape incluido) más un flujo manual de respaldo para Plin. Auth con JWT (access token + refresh en cookie httpOnly) y aislamiento de datos por negocio.',
+    image: reservafyImg,
+    demoUrl: 'https://frontend-xi-cyan-95.vercel.app',
+    repoUrl: 'https://github.com/Jheremy-Conca/reservafy',
+    stack: [
+      'Nuxt 3',
+      'Tailwind',
+      'shadcn-vue',
+      'Node.js',
+      'Express',
+      'Prisma',
+      'Supabase',
+      'JWT',
+      'MercadoPago',
+    ],
+    accentColor: '#ec4899',
+  },
   {
     title: 'Ecommerce — Tienda + Panel de Administrador',
     description:
