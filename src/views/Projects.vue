@@ -65,15 +65,14 @@ import salesDashboardImg from '../assets/projects/sales-live-dashboard/dashboard
 import cercayaImg from '../assets/projects/cercaya/mapa.png'
 import ecommerceImg from '../assets/projects/ecommerce/dashboard.png'
 import reservafyImg from '../assets/projects/reservafy/dashboard.png'
+import etiquetadoImg from '../assets/projects/chemical/chemical.png'
 
 const projects = ref([
   {
     title: 'Sistema de Etiquetado v2 — Excellence Chemical S.A.C.',
     description:
       'Plataforma de etiquetado industrial para Excellence Chemical S.A.C. API REST (NestJS + Prisma + PostgreSQL), panel administrativo (Nuxt/Vue) y un agente de impresión standalone que controla una impresora térmica Epson vía PowerShell/GDI+. Incluye generación de etiquetas con rombo de seguridad NFPA 704, permisos granulares por rol, y arquitectura de cola de trabajos por polling para imprimir desde una laptop remota sin exponer puertos. En producción.',
-    // TODO: agregar captura real en src/assets/projects/etiquetado-excellence-chemical/
-    // y reemplazar esto por `image: etiquetadoImg` (import arriba, como el resto).
-    image: '',
+    image: etiquetadoImg,
     demoUrl: 'https://sistema-de-etiquetado-v2-frontend.vercel.app',
     repos: [
       {
