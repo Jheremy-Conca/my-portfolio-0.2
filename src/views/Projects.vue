@@ -68,6 +68,47 @@ import reservafyImg from '../assets/projects/reservafy/dashboard.png'
 
 const projects = ref([
   {
+    title: 'Sistema de Etiquetado v2 — Excellence Chemical S.A.C.',
+    description:
+      'Plataforma de etiquetado industrial para Excellence Chemical S.A.C. API REST (NestJS + Prisma + PostgreSQL), panel administrativo (Nuxt/Vue) y un agente de impresión standalone que controla una impresora térmica Epson vía PowerShell/GDI+. Incluye generación de etiquetas con rombo de seguridad NFPA 704, permisos granulares por rol, y arquitectura de cola de trabajos por polling para imprimir desde una laptop remota sin exponer puertos. En producción.',
+    // TODO: agregar captura real en src/assets/projects/etiquetado-excellence-chemical/
+    // y reemplazar esto por `image: etiquetadoImg` (import arriba, como el resto).
+    image: '',
+    demoUrl: 'https://sistema-de-etiquetado-v2-frontend.vercel.app',
+    repos: [
+      {
+        label: 'Frontend',
+        url: 'https://github.com/Jheremy-Conca/Sistema-de-Etiquetado-v2-Frontend',
+      },
+      {
+        label: 'Backend',
+        url: 'https://github.com/Jheremy-Conca/Sistema-de-Etiquetado-v2-Backend',
+      },
+      {
+        label: 'Agente de impresión',
+        url: 'https://github.com/Jheremy-Conca/agente-impresion',
+      },
+    ],
+    // Privado por ahora: hay que compartirlo como público desde Claude
+    // (menú Compartir → "Make public") para que el enlace funcione.
+    caseStudyUrl: 'https://claude.ai/artifact/P2qs7jHhKww6nGvzXVEyXZ',
+    stack: [
+      'NestJS',
+      'Prisma',
+      'PostgreSQL',
+      'Supabase',
+      'Nuxt 4',
+      'Vue 3',
+      'Tailwind',
+      'TanStack Query',
+      'Node.js',
+      'TypeScript',
+      'Puppeteer',
+      'PowerShell/GDI+',
+    ],
+    accentColor: '#0d9488',
+  },
+  {
     title: 'Reservafy — SaaS de Reservas Online',
     description:
       'SaaS multi-tenant de reservas de citas para negocios de servicios (spas, consultorios, peluquerías). Página pública de reserva sin necesidad de cuenta con cálculo de horarios disponibles, panel de administrador con dashboard y calendario, y pagos vía MercadoPago (Yape incluido) más un flujo manual de respaldo para Plin. Auth con JWT (access token + refresh en cookie httpOnly) y aislamiento de datos por negocio.',

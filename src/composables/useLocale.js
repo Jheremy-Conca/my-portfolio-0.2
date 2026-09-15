@@ -35,7 +35,7 @@ const dictionary = {
   es: {
     // About / Home
     greeting: '👋 Hola, soy',
-    bio: 'Actualmente trabajo con Nuxt.js, NestJS, PostgreSQL, Supabase y Prisma. También tengo experiencia con Vue.js, Node.js, Java y Spring Boot. Me encanta aprender cosas nuevas, experimentar con tecnologías modernas y siempre doy lo mejor de mí en mi trabajo.',
+    bio: 'Actualmente trabajo con Nuxt.js, NestJS, PostgreSQL, Supabase y Prisma. Me encanta aprender cosas nuevas, experimentar con tecnologías modernas y siempre doy lo mejor de mí en mi trabajo.',
     age: 'EDAD',
     years: 'AÑOS',
 
@@ -51,6 +51,7 @@ const dictionary = {
     projectsEmpty: 'No hay proyectos con esa tecnología todavía.',
     projectDemo: 'Ver demo',
     projectCode: 'Código',
+    projectCaseStudy: 'Estudio de caso',
 
     // GitHub
     githubTitle: 'Github',
@@ -99,7 +100,7 @@ const dictionary = {
   },
   en: {
     greeting: "👋 Hi, I'm",
-    bio: "I'm currently working with Nuxt.js, NestJS, PostgreSQL, Supabase and Prisma. I also have experience with Vue.js, Node.js, Java and Spring Boot. I love learning new things, experimenting with modern technologies and always giving my best at work.",
+    bio: "I'm currently working with Nuxt.js, NestJS, PostgreSQL, Supabase and Prisma. I love learning new things, experimenting with modern technologies and always giving my best at work.",
     age: 'AGE',
     years: 'YEARS',
 
@@ -112,6 +113,7 @@ const dictionary = {
     projectsEmpty: 'No projects with that technology yet.',
     projectDemo: 'View demo',
     projectCode: 'Code',
+    projectCaseStudy: 'Case study',
 
     githubTitle: 'Github',
     githubDesc: 'My GitHub profile, where I upload my projects.',

@@ -36,6 +36,21 @@
           <Icon icon="simple-icons:github" class="project-card__btn-icon" />
           {{ repo.label }}
         </a>
+
+        <a
+          v-if="caseStudyUrl"
+          :href="caseStudyUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="project-card__btn project-card__btn--outline"
+          @click.stop
+        >
+          <Icon
+            icon="mdi:file-document-outline"
+            class="project-card__btn-icon"
+          />
+          {{ t.projectCaseStudy }}
+        </a>
       </div>
     </div>
 
@@ -69,6 +84,8 @@ const props = defineProps({
   // Nuevo: soporte para múltiples repos, ej:
   // repos: [{ label: 'Frontend', url: '...' }, { label: 'Backend', url: '...' }]
   repos: { type: Array, default: () => [] },
+  // Enlace opcional a un estudio de caso / write-up del proyecto.
+  caseStudyUrl: { type: String, default: '' },
   stack: { type: Array, default: () => [] },
   accentColor: { type: String, default: '#7c5cff' },
 })
